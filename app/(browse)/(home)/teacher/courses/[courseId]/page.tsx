@@ -76,7 +76,7 @@ const CourseIdPage = async ({
     course.title,
     course.description,
     course.imageUrl,
-       course.classId,
+    course.classId,
     course.departments,
     course.startsBy,
     course.categoryId,
@@ -175,7 +175,7 @@ const CourseIdPage = async ({
                   value: classes.id,
                 }))}
               />
-              {option === "الصف الحادي عشر " || option === "الصف الثاني عشر " || option === " جامعي " ?
+              {option === "الصف الحادي عشر" || option === "الصف الثاني عشر" || option === "جامعي" ?
                 <DepartmentForm
                   initialData={course}
                   courseId={course.id}

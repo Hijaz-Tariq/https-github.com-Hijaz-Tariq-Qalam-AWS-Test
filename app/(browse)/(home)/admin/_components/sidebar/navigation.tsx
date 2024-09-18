@@ -2,7 +2,7 @@
 
 import { useLiveUser } from "@/lib/auth";;
 import { usePathname } from "next/navigation";
-import { 
+import {
   Fullscreen,
   KeyRound,
   MessageSquare,
@@ -50,7 +50,7 @@ export const Navigation = () => {
 
   return (
     <ul className="space-y-2 px-2 pt-4 lg:pt-0">
-     {routes.map((route) => (
+      {routes.map((route) => (
         <NavItem
           key={route.href}
           label={route.label}
@@ -58,7 +58,7 @@ export const Navigation = () => {
           href={route.href}
           isActive={pathname === route.href}
         />
-     ))}
+      ))}
     </ul>
   );
 };

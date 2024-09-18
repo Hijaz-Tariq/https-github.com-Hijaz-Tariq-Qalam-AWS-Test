@@ -160,7 +160,7 @@ model Course {
   title       String     @db.Text
   description String?    @db.Text
   imageUrl    String?    @db.Text
-  price       Float? @default(15)
+  price       Float?     @default(15)
   isPublished Boolean    @default(false)
   status      Status     @default(PENDING)
   group       ClassGroup @default(C)
@@ -194,23 +194,32 @@ model City {
 model Class {
   id         String       @id @default(uuid())
   name       String       @unique
+  classIndex Int
   users      User[]
   courses    Course[]
+  categoryId String?
+  category   Category?    @relation(fields: [categoryId], references: [id])
   department Department[]
+
+  @@index([categoryId])
 }
 
 model Department {
-  id     String   @id @default(uuid())
-  name   String   @unique
-  users  User[]
-  Course Course[]
-  Class  Class[]
+  id         String    @id @default(uuid())
+  name       String    @unique
+  users      User[]
+  Course     Course[]
+  Class      Class[]
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
 }
 
 model Category {
-  id      String   @id @default(uuid())
-  name    String   @unique
-  courses Course[]
+  id          String       @id @default(uuid())
+  name        String       @unique
+  courses     Course[]
+  departments Department[]
+  Class       Class[]
 }
 
 model Attachment {
