@@ -26,16 +26,16 @@ export const Navigation = () => {
       href: `/admin/courses/`,
       icon: KeyRound,
     },
-    {
-      label: "Chat",
-      href: `/u/${user?.username}/chat`,
-      icon: MessageSquare,
-    },
-    {
-      label: "Community",
-      href: `/u/${user?.username}/community`,
-      icon: Users,
-    },
+    // {
+    //   label: "Chat",
+    //   href: `/u/${user?.username}/chat`,
+    //   icon: MessageSquare,
+    // },
+    // {
+    //   label: "Community",
+    //   href: `/u/${user?.username}/community`,
+    //   icon: Users,
+    // },
   ];
 
   if (!user?.username) {

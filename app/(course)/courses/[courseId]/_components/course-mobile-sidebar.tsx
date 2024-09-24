@@ -30,8 +30,7 @@ export const CourseMobileSidebar = ({
       <SheetContent side="left" className="p-0 bg-card w-72">
         <CourseSidebar
           course={course}
-          progressCount={progressCount}
-        />
+          progressCount={progressCount} data={[]}        />
       </SheetContent>
     </Sheet>
   )

@@ -58,7 +58,7 @@ export const StartsByForm = ({
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await axios.patch(`/api/courses/${courseId}`, values);
+            await axios.patch(`/api/admin/courses/${courseId}`, values);
             toast.success("user updated");
             toggleEdit();
             router.refresh();
@@ -73,7 +73,7 @@ export const StartsByForm = ({
         <div className="mt-6 border bg-card rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 موعد الدورة
-                <Button onClick={toggleEdit} variant="ghost" disabled={initialData.status !== 'PENDING'}>
+                <Button onClick={toggleEdit} variant="ghost">
                     {isEditing ? (
                         <>الغاء</>
                     ) : (
@@ -111,34 +111,12 @@ export const StartsByForm = ({
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        {/* <Input
-                      type="number"
-                      step="0.01"
-                      disabled={isSubmitting}
-                      placeholder="Set a price for your course"
-                      {...field}
-                    /> */}
-                                        {/* 
-                                        <ReactDatePicker
-
-                                            showTimeSelect
-                                            selected={field.value}
-                                            // onChange={(date: Date | null) => field.onChange(date!)}
-                                            // timeInputLabel="Time:"
-                                            timeInputLabel="Time:"
-                                            //   dateFormat="MM/dd/yyyy h:mm aa"
-                                            dateFormat="dd/MM/yyyy h:mm aa"
-                                            wrapperClassName="date-picker"
-                                            {...field}
-                                        /> */}
-
                                         <ReactDatePicker
                                             selected={field.value}
                                             onChange={(date: Date | null) => field.onChange(date!)}
                                             showTimeSelect
                                             dateFormat="Pp"
                                         />
-
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

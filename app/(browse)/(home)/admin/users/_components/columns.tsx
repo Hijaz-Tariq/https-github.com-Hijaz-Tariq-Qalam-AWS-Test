@@ -31,27 +31,47 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    accessorKey: "price",
+    accessorKey: "birthday",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Price
+          Birthday
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
     },
-    cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price") || "0");
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "ILS"
-      }).format(price);
-
-      return <div>{formatted}</div>
+    cell: ({row}) => {
+      const birthday = row.getValue("birthday") as Date;
+      return (
+       <span>{birthday?.toLocaleString()}</span>
+      )
     }
+  },
+  {
+    accessorKey: "email",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          E-mail
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    // cell: ({ row }) => {
+    //   const price = parseFloat(row.getValue("price") || "0");
+    //   const formatted = new Intl.NumberFormat("en-US", {
+    //     style: "currency",
+    //     currency: "ILS"
+    //   }).format(price);
+
+    //   return <div>{formatted}</div>
+    // }
   },
   {
     accessorKey: "jobRequest",
@@ -74,7 +94,7 @@ export const columns: ColumnDef<User>[] = [
           "bg-slate-500",
           jobRequest && "bg-sky-700"
         )}>
-         <> {jobRequest ? jobRequest : 'لا يوجد طلب'} </>
+          <> {jobRequest ? jobRequest : 'لا يوجد طلب'} </>
         </Badge>
       )
     }

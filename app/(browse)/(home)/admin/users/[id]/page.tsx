@@ -302,7 +302,7 @@ const UserPage = async ({
               initialData={user}
               userId={user.id}
             /> */}
-            {userAge! <= 20 && (
+            {userAge! < 20 && (
               <ClassForm
                 initialData={user}
                 userId={user.id}
