@@ -77,14 +77,15 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col w-full">
 
-
-        <UserItem
-          key={teacher?.id}
-          username={teacher?.username!}
-          imageUrl={teacher?.image!}
-          isLive={stream?.isLive}
-        />
-
+        {stream?.isLive == true ?
+          <UserItem
+            key={teacher?.id}
+            username={teacher?.username!}
+            imageUrl={teacher?.image!}
+            isLive={stream?.isLive}
+          />
+          : null
+        }
 
 
         {course.chapters.map((chapter) => (

@@ -18,10 +18,10 @@ const ChapterIdPage = async ({
 }) => {
   const user = await currentUser();
   const userId = user?.id
-  
+
   if (!userId) {
     return redirect("/");
-  } 
+  }
 
   const {
     chapter,
@@ -45,18 +45,18 @@ const ChapterIdPage = async ({
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
-  return ( 
+  return (
     <div>
       {userProgress?.isCompleted && (
         <Banner
           variant="success"
-          label="You already completed this chapter."
+          label="قمت بدراسة هذا الدرس سابقاً ."
         />
       )}
       {isLocked && (
         <Banner
           variant="warning"
-          label="You need to purchase this course to watch this chapter."
+          label="بجب الاشتراك في الدورة حتى تتمكن من مشاهدة هذا الدرس."
         />
       )}
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
@@ -94,12 +94,12 @@ const ChapterIdPage = async ({
           <div>
             <Preview value={chapter.description!} />
           </div>
-           {!!attachments.length && (
+          {!!attachments.length && (
             <>
               <Separator />
               <div className="p-4">
                 {attachments.map((attachment) => (
-                  <a 
+                  <a
                     href={attachment.url}
                     target="_blank"
                     key={attachment.id}
@@ -113,11 +113,11 @@ const ChapterIdPage = async ({
                 ))}
               </div>
             </>
-           )} 
+          )}
         </div>
       </div>
     </div>
-   );
+  );
 }
- 
+
 export default ChapterIdPage;
