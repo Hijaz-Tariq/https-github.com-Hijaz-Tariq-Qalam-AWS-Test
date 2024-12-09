@@ -55,7 +55,8 @@ export const NavbarRoutes = () => {
                             className="text-muted-foreground hover:text-primary mr-2"
                             asChild
                         >
-                            <Link href={`/u/${user?.name}`}>
+                            {/* <Link href={`/u/${user?.name}`}> */}
+                            <Link href={`/u/rooms/123`}>
                                 <Clapperboard className="h-5 w-5 lg:mr-2 " />
                                 <span className=" lg:block">
                                     goLive

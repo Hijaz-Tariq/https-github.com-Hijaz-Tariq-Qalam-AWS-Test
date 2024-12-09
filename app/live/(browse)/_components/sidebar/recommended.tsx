@@ -31,6 +31,7 @@ export const Recommended = ({
       <ul className="space-y-2 px-2">
         {data.map((user) => (
           <UserItem
+          courseId="courseId"
             key={user.id}
             username={user.username!}
             imageUrl={user.image!}

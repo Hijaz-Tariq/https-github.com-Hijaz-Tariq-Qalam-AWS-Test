@@ -12,12 +12,14 @@ import { LiveBadge } from "@/components/live-badge";
 
 interface UserItemProps {
   username: string;
+  courseId: string;
   imageUrl: string;
   isLive?: boolean;
 };
 
 export const UserItem = ({
   username,
+  courseId,
   imageUrl,
   isLive,
 }: UserItemProps) => {
@@ -25,7 +27,8 @@ export const UserItem = ({
 
   const { collapsed } = useSidebar((state) => state);
 
-  const href = `/live/${username}`;
+  // const href = `/live/${username}`;
+  const href = `/x/rooms/${courseId}`;
   const isActive = pathname === href;
 
   return (

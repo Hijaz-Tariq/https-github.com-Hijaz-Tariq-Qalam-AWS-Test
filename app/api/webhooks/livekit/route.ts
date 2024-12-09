@@ -18,26 +18,26 @@ export async function POST(req: Request) {
   }
 
   const event = receiver.receive(body, authorization);
+console.log(event)
+  // if (event.event === "ingress_started") {
+  //   await db.stream.update({
+  //     where: {
+  //       ingressId: event.ingressInfo?.ingressId,
+  //     },
+  //     data: {
+  //       isLive: true,
+  //     },
+  //   });
+  // }
 
-  if (event.event === "ingress_started") {
-    await db.stream.update({
-      where: {
-        ingressId: event.ingressInfo?.ingressId,
-      },
-      data: {
-        isLive: true,
-      },
-    });
-  }
-
-  if (event.event === "ingress_ended") {
-    await db.stream.update({
-      where: {
-        ingressId: event.ingressInfo?.ingressId,
-      },
-      data: {
-        isLive: false,
-      },
-    });
-  }
+  // if (event.event === "ingress_ended") {
+  //   await db.stream.update({
+  //     where: {
+  //       ingressId: event.ingressInfo?.ingressId,
+  //     },
+  //     data: {
+  //       isLive: false,
+  //     },
+  //   });
+  // }
 }

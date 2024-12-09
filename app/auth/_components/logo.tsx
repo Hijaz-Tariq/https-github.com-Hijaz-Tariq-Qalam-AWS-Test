@@ -24,7 +24,7 @@ export const Logo = () => {
                 font.className,
             )}>
                 <p className="text-sm text-muted-foreground">
-                    بوابة المعرفة
+                    بوابة قلم
                 </p>
             </div>
         </div>

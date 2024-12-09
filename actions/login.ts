@@ -8,6 +8,8 @@ import { signIn } from "@/next-auth";
 import { LoginSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
+import { emailOrPhone } from "@/lib/utils";
+
 import { 
   sendVerificationEmail,
   sendTwoFactorTokenEmail,
@@ -21,6 +23,23 @@ import {
   getTwoFactorConfirmationByUserId
 } from "@/data/two-factor-confirmation";
 
+const normalizePhoneNumber = (phone: string): string => {
+  // Remove any non-numeric characters first
+  phone = phone.replace(/\D/g, "");
+
+  // Find the first occurrence of '5' and remove everything before it
+  const phoneStartIndex = phone.indexOf("5");
+
+  if (phoneStartIndex === -1) {
+    // If no '5' is found, return the phone as is or handle as needed
+    return phone;
+  }
+
+  // Take everything from the first "5" onwards and add the "970" prefix
+  return "970" + phone.slice(phoneStartIndex);
+};
+
+
 export const login = async (
   values: z.infer<typeof LoginSchema>,
   callbackUrl?:string | null,
@@ -31,7 +50,15 @@ export const login = async (
     return { error: "Invalid fields!" };
   }
 
-  const { email, password, code } = validatedFields.data;
+  let { email, password, code } = validatedFields.data;
+
+   // Check if the input email is a phone number
+   const emailOrPhoneValue = emailOrPhone(email);
+   if (emailOrPhoneValue === "phone") {
+     // If the email is actually a phone number, append '@phone.com'
+    //  email = `${email}@phone.com`;
+    email = `${normalizePhoneNumber(email)}@phone.com`;
+   }
 
   const existingUser = await getUserByEmail(email);
 

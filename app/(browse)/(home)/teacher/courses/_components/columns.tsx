@@ -79,6 +79,36 @@ export const columns: ColumnDef<Course>[] = [
       )
     }
   },
+
+  {
+    id: "startLive",  // Unique identifier for the column
+    header: () => (
+      <Button variant="ghost">
+        Sart Live
+      </Button>
+    ),
+    cell: ({ row }) => {
+      // const handleButtonClick = () => {
+      //   const courseId = row.original.id;
+      //   // Example: perform some action with courseId (like navigating or making an API call)
+      //   // alert(`Button clicked for course ID: ${courseId}`);
+      // //   <Link href={`/u/rooms/${courseId}`}>
+      // //  Click me
+      // // </Link>
+      // // router.push(`/u/rooms/${courseId}`);
+      // };
+      const { id } = row.original; 
+      return (
+        <Link href={`/x/rooms/${id}`}>
+        <Button variant="outline">
+          Click Me
+        </Button>
+      </Link>
+      );
+    }
+  },
+  
+
   {
     id: "actions",
     cell: ({ row }) => {

@@ -77,12 +77,13 @@ export const CourseSidebar = async ({
       </div>
       <div className="flex flex-col w-full">
 
-        {stream?.isLive == true ?
+        {course?.isLive == true ?
           <UserItem
             key={teacher?.id}
             username={teacher?.username!}
+            courseId={course?.id!}
             imageUrl={teacher?.image!}
-            isLive={stream?.isLive}
+            isLive={course?.isLive}
           />
           : null
         }

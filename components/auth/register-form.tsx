@@ -18,11 +18,15 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { CardWrapper } from "@/components/auth/card-wrapper"
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { register } from "@/actions/register";
+import { format } from "date-fns";
 
 export const RegisterForm = () => {
     const [error, setError] = useState<string | undefined>("");
@@ -35,6 +39,7 @@ export const RegisterForm = () => {
             email: "",
             password: "",
             name: "",
+            passwordConfirm: "",
         },
     });
     const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
@@ -52,10 +57,10 @@ export const RegisterForm = () => {
 
     return (
         <CardWrapper
-        headerLabel="حساب جديد"
-        backButtonLabel="قمت بالتسجيل سابقاً"
-        backButtonHref="/auth/login"
-        showSocial
+            headerLabel="حساب جديد"
+            backButtonLabel="قمت بالتسجيل سابقاً"
+            backButtonHref="/auth/login"
+            showSocial
         >
             <Form {...form}>
                 <form
@@ -68,7 +73,7 @@ export const RegisterForm = () => {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>الإسم:</FormLabel>
+                                    {/* <FormLabel>الإسم:</FormLabel> */}
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -82,17 +87,40 @@ export const RegisterForm = () => {
                         />
                         <FormField
                             control={form.control}
+                            name="birthday"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormControl>
+                                        <div className="justify-items-center">
+                                            <FormLabel>تاريخ الميلاد</FormLabel>
+                                            <ReactDatePicker
+                                                // showTimeSelect
+                                                selected={field.value}
+                                                onChange={(date: Date | null) => field.onChange(date!)}
+                                                dateFormat="dd/MM/yyyy"
+                                                wrapperClassName="date-picker"
+                                                placeholderText={format(new Date(), "dd/MM/yyyy")}
+                                                className="mr-24 ml-3 h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                            />
+                                        </div>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>الايميل</FormLabel>
+                                    {/* <FormLabel>الايميل</FormLabel> */}
                                     <FormControl>
-                                    <div className="flex justify-center">
-                                        <TelInput
-                                            {...field}
-                                            placeholder="New_User@e-qalam.com"
-                                            disabled={isPending}
-                                        />
+                                        <div className="flex justify-center">
+                                            <TelInput
+                                                {...field}
+                                                placeholder="الايميل او الهاتف"
+                                                disabled={isPending}
+                                            />
                                         </div>
                                     </FormControl>
                                     <FormMessage />
@@ -106,9 +134,24 @@ export const RegisterForm = () => {
                                 <FormItem>
                                     <FormLabel>كلمة المرور</FormLabel>
                                     <FormControl>
-                                    <div className="flex justify-center">
-                                        <PasswordInput {...field} placeholder="******" disabled={isPending} />
-                                   </div>
+                                        <div className="flex justify-center">
+                                            <PasswordInput {...field} placeholder="******" disabled={isPending} />
+                                        </div>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="passwordConfirm"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>تأكيد كلمة المرور</FormLabel>
+                                    <FormControl>
+                                        <div className="flex justify-center">
+                                            <PasswordInput {...field} placeholder="******" disabled={isPending} />
+                                        </div>
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

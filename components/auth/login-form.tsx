@@ -70,7 +70,7 @@ export const LoginForm = () => {
 
     return (
         <CardWrapper
-            headerLabel="الدخول الى الحساب"
+            headerLabel="الدخول الى المنصة"
             backButtonLabel="ليس لديك حساب؟ تسجيل حساب جديد"
             backButtonHref="/auth/register"
             showSocial
@@ -107,12 +107,12 @@ export const LoginForm = () => {
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>الايميل</FormLabel>
+                                            {/* <FormLabel>الايميل</FormLabel> */}
                                             <FormControl >
                                                 <div className="flex justify-center">
                                                     <TelInput
                                                         {...field}
-                                                        placeholder="user@e-qalam.com"
+                                                        placeholder="الهاتف او الايميل"
                                                         disabled={isPending}
                                                     />
                                                 </div>

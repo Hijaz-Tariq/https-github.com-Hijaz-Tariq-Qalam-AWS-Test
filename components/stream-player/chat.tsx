@@ -54,7 +54,8 @@ export const Chat = ({
   }, [matches, onExpand]);
 
   const reversedMessages = useMemo(() => {
-    return messages.sort((a, b) => b.timestamp - a.timestamp);
+    // return messages.sort((a, b) => b.timestamp - a.timestamp);
+    return messages
   }, [messages]);
 
   const onSubmit = () => {
