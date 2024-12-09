@@ -34,6 +34,7 @@ export const NewPasswordForm = () => {
     resolver: zodResolver(NewPasswordSchema),
     defaultValues: {
       password: "",
+      passwordConfirm: "",
     },
   });
 
@@ -53,7 +54,7 @@ export const NewPasswordForm = () => {
   return (
     <CardWrapper
       headerLabel="Enter a new password"
-      backButtonLabel="Back to login"
+      backButtonLabel="العودة الى صفحة الدخول"
       backButtonHref="/auth/login"
     >
       <Form {...form}>
@@ -67,7 +68,25 @@ export const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel> كلمة المرور الجديدة</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      placeholder="******"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="passwordConfirm"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>تأكيد كلمة المرور</FormLabel>
                   <FormControl>
                     <Input
                       {...field}

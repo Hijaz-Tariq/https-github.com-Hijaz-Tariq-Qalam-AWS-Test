@@ -29,7 +29,8 @@ export const ChatList = ({
     <div className="flex flex-1 flex-col-reverse overflow-y-auto p-3 h-full">
       {messages.map((message) => (
         <ChatMessage
-          key={message.timestamp}
+          // key={message.timestamp}
+          key = {Date()}
           data={message}
         />
       ))}

@@ -55,7 +55,7 @@ model User {
 
   accounts Account[]
 
-  phone                 String?
+  phone                 String?                @unique
   birthday              DateTime?
   sex                   UserSex                @default(MALE)
   cityId                String?
@@ -157,6 +157,7 @@ model Code {
 model Course {
   id          String     @id @default(uuid())
   userId      String
+  isLive      Boolean    @default(false)
   title       String     @db.Text
   description String?    @db.Text
   imageUrl    String?    @db.Text

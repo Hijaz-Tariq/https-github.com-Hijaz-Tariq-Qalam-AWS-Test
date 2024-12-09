@@ -65,7 +65,7 @@ export const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>الهاتف او الايميل</FormLabel>
                   <FormControl>
                   <TelInput
                             {...field}
@@ -84,7 +84,7 @@ export const ResetForm = () => {
             type="submit"
             className="w-full"
           >
-            Send reset email
+            ارسال الرابط
           </Button>
         </form>
       </Form>

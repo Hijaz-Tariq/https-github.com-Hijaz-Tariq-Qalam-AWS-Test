@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import { 
+import {
   Avatar,
   AvatarFallback,
   AvatarImage,
@@ -64,8 +64,8 @@ export const UserAvatar = ({
   );
 };
 
-interface UserAvatarSkeletonProps 
-  extends VariantProps<typeof avatarSizes> {};
+interface UserAvatarSkeletonProps
+  extends VariantProps<typeof avatarSizes> { };
 
 export const UserAvatarSkeleton = ({
   size,
